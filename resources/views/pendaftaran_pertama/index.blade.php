@@ -38,6 +38,10 @@
                                     <label for="">Perkerjaan</label>
                                     <input type="text" name="pekerjaan" id="pekerjaan" required>
                                 </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">No Telepon</label>
+                                    <input type="text" name="no_tlpn" id="no_tlpn" required>
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label for="">Alamat</label>
                                     <textarea name="alamat" id="alamat" required></textarea>
@@ -70,6 +74,10 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                     <label for="">Perkerjaan Kuasa</label>
                                     <input type="text" name="pekerjaan_kuasa" id="pekerjaan_kuasa">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">No Telepon Kuasa</label>
+                                    <input type="text" name="no_tlpn_kuasa" id="no_tlpn_kuasa">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label for="">Alamat Kuasa</label>
@@ -351,6 +359,7 @@
                             $('#umur').val(data.umur);
                             $('#pekerjaan').val(data.pekerjaan);
                             $('#alamat').val(data.alamat);
+                            $('#no_tlpn').val(data.no_tlpn);
                         }
                     });
 
@@ -366,6 +375,7 @@
                             $('#umur_kuasa').val(data.umur);
                             $('#pekerjaan_kuasa').val(data.pekerjaan);
                             $('#alamat_kuasa').val(data.alamat);
+                            $('#no_tlpn_kuasa').val(data.no_tlpn);
                         }
                     });
 

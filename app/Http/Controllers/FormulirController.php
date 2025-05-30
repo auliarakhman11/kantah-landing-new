@@ -68,6 +68,7 @@ class FormulirController extends Controller
                 'umur' => $request->umur,
                 'pekerjaan' => $request->pekerjaan,
                 'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
             ]);
         } else {
             Pemohon::create([
@@ -76,6 +77,7 @@ class FormulirController extends Controller
                 'umur' => $request->umur,
                 'pekerjaan' => $request->pekerjaan,
                 'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
             ]);
         }
 
@@ -87,6 +89,7 @@ class FormulirController extends Controller
                     'umur' => $request->umur_kuasa,
                     'pekerjaan' => $request->pekerjaan_kuasa,
                     'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
                 ]);
             } else {
                 Pemohon::create([
@@ -95,6 +98,7 @@ class FormulirController extends Controller
                     'umur' => $request->umur_kuasa,
                     'pekerjaan' => $request->pekerjaan_kuasa,
                     'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
                 ]);
             }
         }
@@ -107,11 +111,13 @@ class FormulirController extends Controller
             'umur' => $request->umur,
             'pekerjaan' => $request->pekerjaan,
             'alamat' => $request->alamat,
+            'no_tlpn' => $request->no_tlpn,
             'nik_kuasa' => $request->nik_kuasa,
             'nama_kuasa' => $request->nama_kuasa,
             'umur_kuasa' => $request->umur_kuasa,
             'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
             'alamat_kuasa' => $request->alamat_kuasa,
+            'no_tlpn_kuasa' => $request->no_tlpn_kuasa,
             'kecamatan_id' => $request->kecamatan_id,
             'kelurahan_id' => $kelurahan_id[0],
             'rw' => $request->rw,
@@ -196,11 +202,20 @@ class FormulirController extends Controller
             // $xmlWriter->save("php://output");
 
             // $templateProcessor->saveAs('php://output');
-            $pathToSave = public_path('hasil') . '/FormulirPendaftaranSertipikatTahap1'.$request->id.'.docx';
+            $pathToSave = public_path('hasil') . '/FormulirPendaftaranSertipikatTahap1' . $request->id . '.docx';
             $templateProcessor->saveAs($pathToSave);
             return response()->file($pathToSave);
         } else {
             return redirect(route('home'));
         }
+    }
+
+    public function pendaftaranKedua()
+    {
+        return view('pendaftaran_pertama.index', [
+            'title' => 'Pendaftaran Pertama Kali',
+            'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
+            'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
+        ]);
     }
 }
