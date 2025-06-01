@@ -5,8 +5,8 @@
         <div class="auto-container">
             <div class="sec-title centred pb_70 light sec-title-animation animation-style2">
                 {{-- <span class="sub-title mb_10 title-animation">REQUEST NEEDED TALENT</span> --}}
-                <h2 class="title-animation">Pendaftaran Seripikat Tahap 1</h2>
-                <p class="title-animation">Permohonan Pengukuran dan Pemetaan Kadastral</p>
+                <h2 class="title-animation">Pendaftaran Seripikat Tahap 2</h2>
+                <p class="title-animation">Permohonan SK Pemberian Hak</p>
             </div>
             <form id="form_permohonan">
                 @csrf

@@ -302,7 +302,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="index.html">Pendaftaran Sertipikat Tahap 3</a></h5>
+                            <h5><a href="{{ route('pendaftaranKetiga') }}">Pendaftaran Sertipikat Tahap 3</a></h5>
                             <p>Permohonan Pendaftaran SK Hak</p>
                         </div>
                     </div>
