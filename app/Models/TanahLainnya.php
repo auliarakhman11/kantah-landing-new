@@ -10,5 +10,5 @@ class TanahLainnya extends Model
     use HasFactory;
 
     protected $table = 'tanah_lainnya';
-    protected $fillable = ['permohonan_id', 'atas_nama', 'alamat', 'kelurahan', 'kecamatan', 'jenis_hak', 'luas', 'keterangan'];
+    protected $fillable = ['permohonan_id', 'nama_alamat', 'letak_tanah', 'jenis_hak_lain', 'luas_lain'];
 }

@@ -293,7 +293,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="index.html">Pendaftaran Sertipikat Tahap 2</a></h5>
+                            <h5><a href="{{ route('pendaftaranKedua') }}">Pendaftaran Sertipikat Tahap 2</a></h5>
                             <p>Permohonan SK Pemberian Hak</p>
                         </div>
                     </div>

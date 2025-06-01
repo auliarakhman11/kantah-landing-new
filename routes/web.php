@@ -34,6 +34,11 @@ Route::get('pendaftaranPertama', [FormulirController::class, 'pendaftaranPertama
 Route::post('addPendaftaranPertama', [FormulirController::class, 'addPendaftaranPertama'])->name('addPendaftaranPertama');
 Route::get('viewPendaftaranPertama', [FormulirController::class, 'viewPendaftaranPertama'])->name('viewPendaftaranPertama');
 Route::get('downloadPendaftaranPertama', [FormulirController::class, 'downloadPendaftaranPertama'])->name('downloadPendaftaranPertama');
+
+Route::get('pendaftaranKedua', [FormulirController::class, 'pendaftaranKedua'])->name('pendaftaranKedua');
+Route::post('addPendaftaranKedua', [FormulirController::class, 'addPendaftaranKedua'])->name('addPendaftaranKedua');
+Route::get('viewPendaftaranKedua', [FormulirController::class, 'viewPendaftaranKedua'])->name('viewPendaftaranKedua');
+Route::get('downloadPendaftaranKedua', [FormulirController::class, 'downloadPendaftaranKedua'])->name('downloadPendaftaranKedua');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

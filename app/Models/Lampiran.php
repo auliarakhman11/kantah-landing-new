@@ -10,5 +10,5 @@ class Lampiran extends Model
     use HasFactory;
 
     protected $table = 'lampiran';
-    protected $fillable = ['permohonan_id', 'jenis', 'nm_lampiran'];
+    protected $fillable = ['permohonan_id', 'nm_lampiran'];
 }
