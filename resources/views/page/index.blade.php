@@ -339,6 +339,15 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="{{ route('mergerHakTanggungan') }}">Merger Hak Tanggungan</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
                             <h5><a href="">Pemisahan, Pemecahan, Penggabungan</a></h5>
                         </div>
                     </div>

@@ -54,6 +54,11 @@ Route::get('gantiNamaSertipikat', [FormulirController::class, 'gantiNamaSertipik
 Route::post('addGantiNamaSertipikat', [FormulirController::class, 'addGantiNamaSertipikat'])->name('addGantiNamaSertipikat');
 Route::get('viewGantiNamaSertipikat', [FormulirController::class, 'viewGantiNamaSertipikat'])->name('viewGantiNamaSertipikat');
 Route::get('downloadGantiNamaSertipikat', [FormulirController::class, 'downloadGantiNamaSertipikat'])->name('downloadGantiNamaSertipikat');
+
+Route::get('mergerHakTanggungan', [FormulirController::class, 'mergerHakTanggungan'])->name('mergerHakTanggungan');
+Route::post('addMergerHakTanggungan', [FormulirController::class, 'addMergerHakTanggungan'])->name('addMergerHakTanggungan');
+Route::get('viewMergerHakTanggungan', [FormulirController::class, 'viewMergerHakTanggungan'])->name('viewMergerHakTanggungan');
+Route::get('downloadMergerHakTanggungan', [FormulirController::class, 'downloadMergerHakTanggungan'])->name('downloadMergerHakTanggungan');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
