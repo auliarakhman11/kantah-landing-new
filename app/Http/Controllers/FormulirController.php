@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\GantiNamaHt;
+use App\Models\GantiNamaSertipikat;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Lampiran;
 use App\Models\LampiranGantiNamaHt;
+use App\Models\LampiranGantiNamaSertipikat;
 use App\Models\Pemohon;
 use App\Models\PendaftaranKedua;
 use App\Models\PendaftaranKetiga;
@@ -849,6 +851,120 @@ class FormulirController extends Controller
             $pathToSave = public_path('hasil') . '/GantiNamaPemegangHT' . $request->id . '.docx';
             $templateProcessor->saveAs($pathToSave);
             return response()->file($pathToSave);
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+
+    public function gantiNamaSertipikat()
+    {
+        return view('ganti_nama_setipikat.index', [
+            'title' => 'Pendaftaran Pertama Kali',
+            'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
+            'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
+        ]);
+    }
+
+    public function addGantiNamaSertipikat(Request $request)
+    {
+        if ($request->device_id >= 1) {
+            $device_id = $request->device_id;
+        } else {
+            $device = Device::create(['tgl' => date('Y-m-d')]);
+            $device_id = $device->id;
+        }
+
+        $check_pemohon = Pemohon::where('nik', $request->nik)->first();
+        if ($check_pemohon) {
+            Pemohon::where('id', $check_pemohon->id)->update([
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        } else {
+            Pemohon::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        }
+
+        if (strlen($request->nik_kuasa) == 16) {
+            $check_kuasa = Pemohon::where('nik', $request->nik_kuasa)->first();
+            if ($check_kuasa) {
+                Pemohon::where('id', $check_kuasa->id)->update([
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            } else {
+                Pemohon::create([
+                    'nik' => $request->nik_kuasa,
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            }
+        }
+
+        $kelurahan_id = explode('|', $request->kelurahan_id);
+        $berkas = GantiNamaSertipikat::create([
+            'device_id' => $device_id,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'umur' => $request->umur,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat' => $request->alamat,
+            'no_tlpn' => $request->no_tlpn,
+            'nik_kuasa' => $request->nik_kuasa,
+            'nama_kuasa' => $request->nama_kuasa,
+            'umur_kuasa' => $request->umur_kuasa,
+            'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
+            'alamat_kuasa' => $request->alamat_kuasa,
+            'no_tlpn_kuasa' => $request->no_tlpn_kuasa,
+            'no_surat_kuasa' => $request->no_surat_kuasa,
+            'tgl_surat_kuasa' => $request->tgl_surat_kuasa,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $kelurahan_id[0],
+            'jenis_hak' => $request->jenis_hak,
+            'nomor_hak' => $request->nomor_hak,
+            'tgl' => date('Y-m-d')
+        ]);
+
+        $nm_lampiran = $request->lampiran;
+
+        for ($count = 0; $count < count($nm_lampiran); $count++) {
+            LampiranGantiNamaSertipikat::create([
+                'permohonan_id' => $berkas->id,
+                'nm_lampiran' => $nm_lampiran[$count],
+            ]);
+        }
+
+        return response()->json(['id' => $berkas->id, 'device_id' => $device_id]);
+    }
+
+
+    public function viewGantiNamaSertipikat(Request $request)
+    {
+        $berkas = GantiNamaSertipikat::where('id', $request->id)->where('device_id', $request->device_id)->first();
+
+        if ($berkas) {
+            return view('ganti_nama_ht.view', [
+                'title' => 'Pendaftaran Pertama Kedua',
+                'berkas' => $berkas,
+                'id' => $request->id,
+                'device_id' => $request->device_id,
+            ]);
         } else {
             return redirect(route('home'));
         }

@@ -49,6 +49,9 @@ Route::get('gantiNamaHt', [FormulirController::class,'gantiNamaHt'])->name('gant
 Route::post('addgantiNamaHt', [FormulirController::class,'addgantiNamaHt'])->name('addgantiNamaHt');
 Route::get('viewGantiNamaHt', [FormulirController::class,'viewGantiNamaHt'])->name('viewGantiNamaHt');
 Route::get('downloadGantiNamaHt', [FormulirController::class,'downloadGantiNamaHt'])->name('downloadGantiNamaHt');
+
+Route::get('gantiNamaSertipikat', [FormulirController::class,'gantiNamaSertipikat'])->name('gantiNamaSertipikat');
+Route::post('addGantiNamaSertipikat', [FormulirController::class,'addGantiNamaSertipikat'])->name('addGantiNamaSertipikat');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
