@@ -124,7 +124,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>                                
+                                </div>
 
                                 <div class="col-md-6 col-6">
                                     <label for="">Jenis Hak</label>
@@ -157,37 +157,37 @@
 
                                 <div class="mt-2 col-1">1</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">2</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">3</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">4</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">5</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">6</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
                                 <div class="mt-2 col-1">7</div>
                                 <div class="mt-2 col-11">
-                                    <input type="text" name="lampiran[]" class="form-control" required>
+                                    <input type="text" name="lampiran[]" class="form-control">
                                 </div>
 
 
@@ -203,7 +203,7 @@
                                 {{-- <p>Kosongkan apabila tidak dikuasakan</p> --}}
                             </div>
                             <div class="row clearfix justify-content-center">
-                                
+
                                 <div class="col-lg-5 col-md-12 col-sm-12 right-column">
 
                                     <div class="form-group message-btn">
@@ -219,7 +219,7 @@
 
 
 
-                    
+
 
                 </div>
             </form>
@@ -323,7 +323,7 @@
 
                         localStorage.setItem("deviceId", data.device_id);
 
-                        window.location.href = "{{ route('viewGantiNamaHt') }}?id=" +
+                        window.location.href = "{{ route('viewGantiNamaSertipikat') }}?id=" +
                             data.id + "&device_id=" + data.device_id;
 
 

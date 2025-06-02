@@ -221,7 +221,7 @@ class FormulirController extends Controller
     public function pendaftaranKedua()
     {
         return view('pendaftaran_kedua.index', [
-            'title' => 'Pendaftaran Pertama Kali',
+            'title' => 'Pendaftaran Kedua',
             'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
             'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
         ]);
@@ -371,7 +371,7 @@ class FormulirController extends Controller
 
         if ($berkas) {
             return view('pendaftaran_kedua.view', [
-                'title' => 'Pendaftaran Pertama Kedua',
+                'title' => 'Pendaftaran Kedua',
                 'berkas' => $berkas,
                 'id' => $request->id,
                 'device_id' => $request->device_id,
@@ -536,7 +536,7 @@ class FormulirController extends Controller
     public function pendaftaranKetiga()
     {
         return view('pendaftaran_ketiga.index', [
-            'title' => 'Pendaftaran Pertama Kali',
+            'title' => 'Pendaftaran Ketiga',
             'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
             'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
         ]);
@@ -626,7 +626,7 @@ class FormulirController extends Controller
 
         if ($berkas) {
             return view('pendaftaran_ketiga.view', [
-                'title' => 'Pendaftaran Pertama Kedua',
+                'title' => 'Pendaftaran Ketiga',
                 'berkas' => $berkas,
                 'id' => $request->id,
                 'device_id' => $request->device_id,
@@ -685,7 +685,7 @@ class FormulirController extends Controller
     public function gantiNamaHt()
     {
         return view('ganti_nama_ht.index', [
-            'title' => 'Pendaftaran Pertama Kali',
+            'title' => 'Ganti Nama Pemegang Hak Tanggungan',
             'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
             'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
         ]);
@@ -785,7 +785,7 @@ class FormulirController extends Controller
 
         if ($berkas) {
             return view('ganti_nama_ht.view', [
-                'title' => 'Pendaftaran Pertama Kedua',
+                'title' => 'Ganti Nama Pemegang Hak Tanggungan',
                 'berkas' => $berkas,
                 'id' => $request->id,
                 'device_id' => $request->device_id,
@@ -859,8 +859,8 @@ class FormulirController extends Controller
 
     public function gantiNamaSertipikat()
     {
-        return view('ganti_nama_setipikat.index', [
-            'title' => 'Pendaftaran Pertama Kali',
+        return view('ganti_nama_sertipikat.index', [
+            'title' => 'Ganti Nama Sertipikat',
             'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
             'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
         ]);
@@ -959,8 +959,8 @@ class FormulirController extends Controller
         $berkas = GantiNamaSertipikat::where('id', $request->id)->where('device_id', $request->device_id)->first();
 
         if ($berkas) {
-            return view('ganti_nama_ht.view', [
-                'title' => 'Pendaftaran Pertama Kedua',
+            return view('ganti_nama_sertipikat.view', [
+                'title' => 'Ganti Nama Sertipikat',
                 'berkas' => $berkas,
                 'id' => $request->id,
                 'device_id' => $request->device_id,
@@ -970,4 +970,63 @@ class FormulirController extends Controller
         }
     }
 
+    public function downloadGantiNamaSertipikat(Request $request)
+    {
+        $berkas = GantiNamaSertipikat::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        if ($berkas) {
+            // $url = "https://coba.kantahkabbanjar.com/formulir/FormulirPendaftaranSertipikatTahap1.docx";
+            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/GantiNamaSertipikat.docx'));
+            ///home/u1721841/public_html/coba.kantahkabbanjar.com/FormulirPendaftaranSertipikatTahap1.docx
+
+
+            $lampiran = LampiranGantiNamaSertipikat::where('permohonan_id', $request->id)->get();
+
+            foreach ($lampiran as $key => $l) {
+                ${'lampiran' . ($key + 1)} = $l->nm_lampiran;
+            }
+
+            $templateProcessor->setValues([
+                'nama' => $berkas->nama_kuasa ? $berkas->nama_kuasa : $berkas->nama,
+                'pekerjaan' => $berkas->pekerjaan_kuasa ? $berkas->pekerjaan_kuasa : $berkas->pekerjaan,
+                'alamat' => $berkas->alamat_kuasa ? $berkas->alamat_kuasa : $berkas->alamat,
+                'umur' => $berkas->umur_kuasa ? $berkas->umur_kuasa : $berkas->umur,
+                'nik' => $berkas->nik_kuasa ? $berkas->nik_kuasa : $berkas->nik,
+                'nama_kuasa' => $berkas->nama_kuasa ? $berkas->nama : '-',
+                'umur_kuasa' => $berkas->umur_kuasa ? $berkas->umur : '-',
+                'pekerjaan_kuasa' => $berkas->pekerjaan_kuasa ? $berkas->pekerjaan : '-',
+                'nik_kuasa' => $berkas->nik_kuasa ? $berkas->nik : '-',
+                'alamat_kuasa' => $berkas->alamat_kuasa ? $berkas->alamat : '-',
+                'kelurahan' => $berkas->kelurahan->nm_kelurahan,
+                'kecamatan' => $berkas->kecamatan->nm_kecamatan,
+                'jenis_hak' => $berkas->jenis_hak,
+                'nomor_hak' => $berkas->nomor_hak,
+
+                'lampiran1' => $lampiran1,
+                'lampiran2' => $lampiran2,
+                'lampiran3' => $lampiran3,
+                'lampiran4' => $lampiran4,
+                'lampiran5' => $lampiran5,
+                'lampiran6' => $lampiran6,
+                'lampiran7' => $lampiran7,
+
+            ]);
+
+            // header("Content-Description: File Transfer");
+            // header("Content-Disposition: attachment; filename=Formulir Pendaftaran Sertipikat Tahap 1.docx");
+            // header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            // header('Content-Transfer-Encoding: binary');
+            // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            // header('Expires: 0');
+
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($templateProcessor, 'Word2007');
+            // $xmlWriter->save("php://output");
+
+            // $templateProcessor->saveAs('php://output');
+            $pathToSave = public_path('hasil') . '/GantiNamaSertipikat' . $request->id . '.docx';
+            $templateProcessor->saveAs($pathToSave);
+            return response()->file($pathToSave);
+        } else {
+            return redirect(route('home'));
+        }
+    }
 }

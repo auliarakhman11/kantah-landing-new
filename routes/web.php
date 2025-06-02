@@ -45,13 +45,15 @@ Route::post('addPendaftaranKetiga', [FormulirController::class, 'addPendaftaranK
 Route::get('viewPendaftaranKetiga', [FormulirController::class, 'viewPendaftaranKetiga'])->name('viewPendaftaranKetiga');
 Route::get('downloadPendaftaranKetiga', [FormulirController::class, 'downloadPendaftaranKetiga'])->name('downloadPendaftaranKetiga');
 
-Route::get('gantiNamaHt', [FormulirController::class,'gantiNamaHt'])->name('gantiNamaHt');
-Route::post('addgantiNamaHt', [FormulirController::class,'addgantiNamaHt'])->name('addgantiNamaHt');
-Route::get('viewGantiNamaHt', [FormulirController::class,'viewGantiNamaHt'])->name('viewGantiNamaHt');
-Route::get('downloadGantiNamaHt', [FormulirController::class,'downloadGantiNamaHt'])->name('downloadGantiNamaHt');
+Route::get('gantiNamaHt', [FormulirController::class, 'gantiNamaHt'])->name('gantiNamaHt');
+Route::post('addgantiNamaHt', [FormulirController::class, 'addgantiNamaHt'])->name('addgantiNamaHt');
+Route::get('viewGantiNamaHt', [FormulirController::class, 'viewGantiNamaHt'])->name('viewGantiNamaHt');
+Route::get('downloadGantiNamaHt', [FormulirController::class, 'downloadGantiNamaHt'])->name('downloadGantiNamaHt');
 
-Route::get('gantiNamaSertipikat', [FormulirController::class,'gantiNamaSertipikat'])->name('gantiNamaSertipikat');
-Route::post('addGantiNamaSertipikat', [FormulirController::class,'addGantiNamaSertipikat'])->name('addGantiNamaSertipikat');
+Route::get('gantiNamaSertipikat', [FormulirController::class, 'gantiNamaSertipikat'])->name('gantiNamaSertipikat');
+Route::post('addGantiNamaSertipikat', [FormulirController::class, 'addGantiNamaSertipikat'])->name('addGantiNamaSertipikat');
+Route::get('viewGantiNamaSertipikat', [FormulirController::class, 'viewGantiNamaSertipikat'])->name('viewGantiNamaSertipikat');
+Route::get('downloadGantiNamaSertipikat', [FormulirController::class, 'downloadGantiNamaSertipikat'])->name('downloadGantiNamaSertipikat');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
