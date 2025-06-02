@@ -35,7 +35,7 @@
                                 <p>Untuk mengarahkan pemohon ke halaman website hanya dengan
                                     memindai kode tersebut menggunakan perangkat mobile.</p>
                                 <div class="btn-box"><a href="#modal_qr_code" data-toggle="modal"
-                                        class="theme-btn btn-one">View
+                                        class="theme-btn btn-one">
                                         Lihat</a></div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <p>Fitur download formulir dengan format dokumen agar mudah diakses dan dimodifikasi.</p>
                                 <div class="btn-box"><a
                                         href="{{ route('downloadPendaftaranPertama', ['id' => $id, 'device_id' => $device_id]) }}"
-                                        class="theme-btn btn-one">View
+                                        class="theme-btn btn-one">
                                         Download</a></div>
                             </div>
                         </div>
@@ -82,8 +82,7 @@
                                 <h3><a href="#modal_skm" data-toggle="modal">Survey Kepuasan Masyarakat</a></h3>
                                 <p>Berfungsi untuk mengukur sejauh mana masyarakat merasa puas
                                     dengan layanan atau produk yang kami berikan.</p>
-                                <div class="btn-box"><a href="#modal_skm" data-toggle="modal" class="theme-btn btn-one">View
-                                        Details</a></div>
+                                <div class="btn-box"><a href="#modal_skm" data-toggle="modal" class="theme-btn btn-one">Kunjungi</a></div>
                             </div>
                         </div>
                     </div>

@@ -307,6 +307,123 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Peralihan Hak</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Ganti Nama Pemegang Hak Tanggungan</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Ganti Nama Sertipikat</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Pemisahan, Pemecahan, Penggabungan</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Penataan Batas</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Pencatatan Pelunasan BPHTB</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Perubahan Hak Peningkatan</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Perubahan Hak Penurunan</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">PKKPR untuk Kegiatan Non Berusaha</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">PTP Penyelenggaraan Kebijakan Penggunaan dan Pemanfaatan Tanah</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Roya</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Sertipikat Pengganti Karena Hilang</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 industries-block">
+                    <div class="industries-block-two">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-5"></i></div>
+                            <h5><a href="">Sertipikat Pengganti Karena Rusak, Lama</a></h5>
+                        </div>
+                    </div>
+                </div>
                 {{-- <div class="col-lg-3 col-md-6 col-sm-12 industries-block">
                     <div class="industries-block-two">
                         <div class="inner-box">
