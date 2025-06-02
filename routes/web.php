@@ -45,6 +45,10 @@ Route::post('addPendaftaranKetiga', [FormulirController::class, 'addPendaftaranK
 Route::get('viewPendaftaranKetiga', [FormulirController::class, 'viewPendaftaranKetiga'])->name('viewPendaftaranKetiga');
 Route::get('downloadPendaftaranKetiga', [FormulirController::class, 'downloadPendaftaranKetiga'])->name('downloadPendaftaranKetiga');
 
+Route::get('gantiNamaHt', [FormulirController::class,'gantiNamaHt'])->name('gantiNamaHt');
+Route::post('addgantiNamaHt', [FormulirController::class,'addgantiNamaHt'])->name('addgantiNamaHt');
+Route::get('viewGantiNamaHt', [FormulirController::class,'viewGantiNamaHt'])->name('viewGantiNamaHt');
+Route::get('downloadGantiNamaHt', [FormulirController::class,'downloadGantiNamaHt'])->name('downloadGantiNamaHt');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
