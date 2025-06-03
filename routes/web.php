@@ -79,6 +79,13 @@ Route::get('sertipikatRusak', [FormulirController::class,'sertipikatRusak'])->na
 Route::post('addSertipikatRusak',[FormulirController::class,'addSertipikatRusak'])->name('addSertipikatRusak');
 Route::get('viewSertipikatRusak',[FormulirController::class,'viewSertipikatRusak'])->name('viewSertipikatRusak');
 Route::get('downloadSertipikatRusak', [FormulirController::class,'downloadSertipikatRusak'])->name('downloadSertipikatRusak');
+
+Route::get('penataanBatas',[FormulirController::class,'penataanBatas'])->name('penataanBatas');
+Route::post('addPenataanBatas', [FormulirController::class,'addPenataanBatas'])->name('addPenataanBatas');
+Route::get('viewPenataanBatas', [FormulirController::class,'viewPenataanBatas'])->name('viewPenataanBatas');
+Route::get('downloadPenataanBatas', [FormulirController::class,'downloadPenataanBatas'])->name('downloadPenataanBatas');
+
+Route::get('pisahPecahGabung',[FormulirController::class,'pisahPecahGabung'])->name('pisahPecahGabung');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
