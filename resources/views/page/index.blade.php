@@ -429,7 +429,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="">Sertipikat Pengganti Karena Rusak, Lama</a></h5>
+                            <h5><a href="{{ route('sertipikatRusak') }}">Sertipikat Pengganti Karena Karena Hilang, Rusak, Terbakar, Lama</a></h5>
                         </div>
                     </div>
                 </div>

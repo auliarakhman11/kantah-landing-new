@@ -21,6 +21,7 @@ use App\Models\Pemohon;
 use App\Models\PendaftaranKedua;
 use App\Models\PendaftaranKetiga;
 use App\Models\PendaftaranPertama;
+use App\Models\SertipikatHilang;
 use App\Models\TanahLainnya;
 use Illuminate\Http\Request;
 
@@ -1661,7 +1662,7 @@ class FormulirController extends Controller
 
         if ($berkas) {
             return view('peralihan_hak.view', [
-                'title' => 'Roya',
+                'title' => 'Peralihan Hak',
                 'berkas' => $berkas,
                 'id' => $request->id,
                 'device_id' => $request->device_id,
@@ -1723,10 +1724,154 @@ class FormulirController extends Controller
     public function sertipikatRusak()
     {
         return view('sertipikat_rusak.index', [
-            'title' => 'Peralihan Hak',
+            'title' => 'Sertipikat Pengganti Karena Hilang',
             'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
             'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
         ]);
+    }
+
+    public function addSertipikatHilang(Request $request)
+    {
+        if ($request->device_id >= 1) {
+            $device_id = $request->device_id;
+        } else {
+            $device = Device::create(['tgl' => date('Y-m-d')]);
+            $device_id = $device->id;
+        }
+
+        $check_pemohon = Pemohon::where('nik', $request->nik)->first();
+        if ($check_pemohon) {
+            Pemohon::where('id', $check_pemohon->id)->update([
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        } else {
+            Pemohon::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        }
+
+        if (strlen($request->nik_kuasa) == 16) {
+            $check_kuasa = Pemohon::where('nik', $request->nik_kuasa)->first();
+            if ($check_kuasa) {
+                Pemohon::where('id', $check_kuasa->id)->update([
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            } else {
+                Pemohon::create([
+                    'nik' => $request->nik_kuasa,
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            }
+        }
+
+        $kelurahan_id = explode('|', $request->kelurahan_id);
+        $berkas = SertipikatHilang::create([
+            'device_id' => $device_id,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'umur' => $request->umur,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat' => $request->alamat,
+            'no_tlpn' => $request->no_tlpn,
+            'nik_kuasa' => $request->nik_kuasa,
+            'nama_kuasa' => $request->nama_kuasa,
+            'umur_kuasa' => $request->umur_kuasa,
+            'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
+            'alamat_kuasa' => $request->alamat_kuasa,
+            'no_tlpn_kuasa' => $request->no_tlpn_kuasa,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $kelurahan_id[0],
+            'rw' => $request->rw,
+            'rt' => $request->rt,
+            'alamat_tanah' => $request->alamat_tanah,
+            'jenis_hak' => $request->jenis_hak,
+            'nomor_hak' => $request->nomor_hak,
+            'penggunaan_tanah' => $request->penggunaan_tanah,
+            'tgl' => date('Y-m-d')
+        ]);
+
+        return response()->json(['id' => $berkas->id, 'device_id' => $device_id]);
+    }
+
+    public function viewSertipikatHilang(Request $request)
+    {
+        $berkas = SertipikatHilang::where('id', $request->id)->where('device_id', $request->device_id)->first();
+
+        if ($berkas) {
+            return view('sertipikat_rusak.view', [
+                'title' => 'Sertipikat Pengganti Karena Hilang',
+                'berkas' => $berkas,
+                'id' => $request->id,
+                'device_id' => $request->device_id,
+            ]);
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+    public function downloadSertipikatHilang(Request $request)
+    {
+        $berkas = SertipikatHilang::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        if ($berkas) {
+            // $url = "https://coba.kantahkabbanjar.com/formulir/FormulirPendaftaranSertipikatTahap1.docx";
+            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/sertipikatRusak.docx'));
+            ///home/u1721841/public_html/coba.kantahkabbanjar.com/FormulirPendaftaranSertipikatTahap1.docx
+
+            $templateProcessor->setValues([
+                'nama' => $berkas->nama_kuasa ? $berkas->nama_kuasa : $berkas->nama,
+                'pekerjaan' => $berkas->pekerjaan_kuasa ? $berkas->pekerjaan_kuasa : $berkas->pekerjaan,
+                'alamat' => $berkas->alamat_kuasa ? $berkas->alamat_kuasa : $berkas->alamat,
+                'nama_kuasa' => $berkas->nama_kuasa ? $berkas->nama : '-',
+                'nm_pemilik' => $berkas->nama,
+                'umur_pemilik' => $berkas->umur,
+                'nik_pemilik' => $berkas->nik,
+                'pekerjaan_pemilik' => $berkas->pekerjaan,
+                'alamat_pemilik' => $berkas->alamat,
+                'alamat_tanah' => $berkas->alamat_tanah,
+                'rw' => $berkas->rw,
+                'rt' => $berkas->rt,
+                'kelurahan' => $berkas->kelurahan->nm_kelurahan,
+                'kecamatan' => $berkas->kecamatan->nm_kecamatan,
+                'penggunaan_tanah' => $berkas->penggunaan_tanah,
+                'jenis_hak' => $berkas->jenis_hak,
+                'nomor_hak' => $berkas->nomor_hak,
+
+            ]);
+
+            // header("Content-Description: File Transfer");
+            // header("Content-Disposition: attachment; filename=Formulir Pendaftaran Sertipikat Tahap 1.docx");
+            // header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            // header('Content-Transfer-Encoding: binary');
+            // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            // header('Expires: 0');
+
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($templateProcessor, 'Word2007');
+            // $xmlWriter->save("php://output");
+
+            // $templateProcessor->saveAs('php://output');
+            $pathToSave = public_path('hasil') . '/sertipikatRusak' . $request->id . '.docx';
+            $templateProcessor->saveAs($pathToSave);
+            return response()->file($pathToSave);
+        } else {
+            return redirect(route('home'));
+        }
     }
 
 }
