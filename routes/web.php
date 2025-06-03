@@ -69,6 +69,11 @@ Route::get('formulirRoya', [FormulirController::class, 'FormulirRoya'])->name('F
 Route::post('addFormulirRoya', [FormulirController::class, 'addFormulirRoya'])->name('addFormulirRoya');
 Route::get('viewFormulirRoya', [FormulirController::class, 'viewFormulirRoya'])->name('viewFormulirRoya');
 Route::get('downloadFormulirRoya', [FormulirController::class, 'downloadFormulirRoya'])->name('downloadFormulirRoya');
+
+Route::get('formulirPeralihanHak', [FormulirController::class,'formulirPeralihanHak'])->name('formulirPeralihanHak');
+Route::post('addFormulirPeralihanHak',[FormulirController::class,'addFormulirPeralihanHak'])->name('addFormulirPeralihanHak');
+Route::get('viewFormulirPeralihanHak',[FormulirController::class,'viewFormulirPeralihanHak'])->name('viewFormulirPeralihanHak');
+Route::get('downloadFormulirPeralihanHak', [FormulirController::class,'downloadFormulirPeralihanHak'])->name('downloadFormulirPeralihanHak');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
