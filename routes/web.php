@@ -86,6 +86,9 @@ Route::get('viewPenataanBatas', [FormulirController::class,'viewPenataanBatas'])
 Route::get('downloadPenataanBatas', [FormulirController::class,'downloadPenataanBatas'])->name('downloadPenataanBatas');
 
 Route::get('pisahPecahGabung',[FormulirController::class,'pisahPecahGabung'])->name('pisahPecahGabung');
+Route::post('addPisahPecahGabung', [FormulirController::class,'addPisahPecahGabung'])->name('addPisahPecahGabung');
+Route::get('viewPisahPecahGabung',[FormulirController::class,'viewPisahPecahGabung'])->name('viewPisahPecahGabung');
+Route::get('downloadPisahPecahGabung',[FormulirController::class,'downloadPisahPecahGabung'])->name('downloadPisahPecahGabung');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

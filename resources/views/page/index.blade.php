@@ -348,7 +348,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="">Pemisahan, Pemecahan, Penggabungan</a></h5>
+                            <h5><a href="{{ route('pisahPecahGabung') }}">Pemisahan, Pemecahan, Penggabungan</a></h5>
                         </div>
                     </div>
                 </div>
