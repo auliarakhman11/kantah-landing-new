@@ -366,7 +366,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="">Pencatatan Pelunasan BPHTB</a></h5>
+                            <h5><a href="{{ route('pelunasanBphtb') }}">Pencatatan Pelunasan BPHTB</a></h5>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,9 @@ use App\Models\Lampiran;
 use App\Models\LampiranGantiNamaHt;
 use App\Models\LampiranGantiNamaSertipikat;
 use App\Models\LampiranMergerHakTanggungan;
+use App\Models\LampiranPelunasanBphtb;
 use App\Models\MergerHakTanggungan;
+use App\Models\PelunasanBphtb;
 use App\Models\Pemohon;
 use App\Models\PendaftaranKedua;
 use App\Models\PendaftaranKetiga;
@@ -1209,4 +1211,182 @@ class FormulirController extends Controller
             return redirect(route('home'));
         }
     }
+
+
+    public function pelunasanBphtb()
+    {
+        return view('pelunasan_bphtb.index', [
+            'title' => 'Pencatatan Pelunasan BPHTB',
+            'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
+            'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
+        ]);
+    }
+
+
+    public function addPelunasanBphtb(Request $request)
+    {
+        if ($request->device_id >= 1) {
+            $device_id = $request->device_id;
+        } else {
+            $device = Device::create(['tgl' => date('Y-m-d')]);
+            $device_id = $device->id;
+        }
+
+        $check_pemohon = Pemohon::where('nik', $request->nik)->first();
+        if ($check_pemohon) {
+            Pemohon::where('id', $check_pemohon->id)->update([
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        } else {
+            Pemohon::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        }
+
+        if (strlen($request->nik_kuasa) == 16) {
+            $check_kuasa = Pemohon::where('nik', $request->nik_kuasa)->first();
+            if ($check_kuasa) {
+                Pemohon::where('id', $check_kuasa->id)->update([
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            } else {
+                Pemohon::create([
+                    'nik' => $request->nik_kuasa,
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            }
+        }
+
+        $kelurahan_id = explode('|', $request->kelurahan_id);
+        $berkas = PelunasanBphtb::create([
+            'device_id' => $device_id,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'umur' => $request->umur,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat' => $request->alamat,
+            'no_tlpn' => $request->no_tlpn,
+            'nik_kuasa' => $request->nik_kuasa,
+            'nama_kuasa' => $request->nama_kuasa,
+            'umur_kuasa' => $request->umur_kuasa,
+            'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
+            'alamat_kuasa' => $request->alamat_kuasa,
+            'no_tlpn_kuasa' => $request->no_tlpn_kuasa,
+            'no_surat_kuasa' => $request->no_surat_kuasa,
+            'tgl_surat_kuasa' => $request->tgl_surat_kuasa,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $kelurahan_id[0],
+            'jenis_hak' => $request->jenis_hak,
+            'nomor_hak' => $request->nomor_hak,
+            'tgl' => date('Y-m-d')
+        ]);
+
+        $nm_lampiran = $request->lampiran;
+
+        for ($count = 0; $count < count($nm_lampiran); $count++) {
+            LampiranPelunasanBphtb::create([
+                'permohonan_id' => $berkas->id,
+                'nm_lampiran' => $nm_lampiran[$count],
+            ]);
+        }
+
+        return response()->json(['id' => $berkas->id, 'device_id' => $device_id]);
+    }
+
+    public function viewPelunasanBphtb(Request $request)
+    {
+        $berkas = PelunasanBphtb::where('id', $request->id)->where('device_id', $request->device_id)->first();
+
+        if ($berkas) {
+            return view('pelunasan_bphtb.view', [
+                'title' => 'Pencatatan Pelunasan BPHTB',
+                'berkas' => $berkas,
+                'id' => $request->id,
+                'device_id' => $request->device_id,
+            ]);
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+    public function downloadPelunasanBphtb(Request $request)
+    {
+        $berkas = PelunasanBphtb::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        if ($berkas) {
+            // $url = "https://coba.kantahkabbanjar.com/formulir/FormulirPendaftaranSertipikatTahap1.docx";
+            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/PelunasanBphtb.docx'));
+            ///home/u1721841/public_html/coba.kantahkabbanjar.com/FormulirPendaftaranSertipikatTahap1.docx
+
+
+            $lampiran = LampiranPelunasanBphtb::where('permohonan_id', $request->id)->get();
+
+            foreach ($lampiran as $key => $l) {
+                ${'lampiran' . ($key + 1)} = $l->nm_lampiran;
+            }
+
+            $templateProcessor->setValues([
+                'nama' => $berkas->nama_kuasa ? $berkas->nama_kuasa : $berkas->nama,
+                'pekerjaan' => $berkas->pekerjaan_kuasa ? $berkas->pekerjaan_kuasa : $berkas->pekerjaan,
+                'alamat' => $berkas->alamat_kuasa ? $berkas->alamat_kuasa : $berkas->alamat,
+                'umur' => $berkas->umur_kuasa ? $berkas->umur_kuasa : $berkas->umur,
+                'nik' => $berkas->nik_kuasa ? $berkas->nik_kuasa : $berkas->nik,
+                'nama_kuasa' => $berkas->nama_kuasa ? $berkas->nama : '-',
+                'umur_kuasa' => $berkas->umur_kuasa ? $berkas->umur : '-',
+                'pekerjaan_kuasa' => $berkas->pekerjaan_kuasa ? $berkas->pekerjaan : '-',
+                'nik_kuasa' => $berkas->nik_kuasa ? $berkas->nik : '-',
+                'alamat_kuasa' => $berkas->alamat_kuasa ? $berkas->alamat : '-',
+                'no_surat_kuasa' => $berkas->no_surat_kuasa ? $berkas->no_surat_kuasa : '-',
+                'tgl_surat_kuasa' => $berkas->tgl_surat_kuasa ? date("d-m-Y", strtotime($berkas->tgl_surat_kuasa)) : '-',
+                'kelurahan' => $berkas->kelurahan->nm_kelurahan,
+                'kecamatan' => $berkas->kecamatan->nm_kecamatan,
+                'jenis_hak' => $berkas->jenis_hak,
+                'nomor_hak' => $berkas->nomor_hak,
+
+                'lampiran1' => $lampiran1,
+                'lampiran2' => $lampiran2,
+                'lampiran3' => $lampiran3,
+                'lampiran4' => $lampiran4,
+                'lampiran5' => $lampiran5,
+                'lampiran6' => $lampiran6,
+                'lampiran7' => $lampiran7,
+
+            ]);
+
+            // header("Content-Description: File Transfer");
+            // header("Content-Disposition: attachment; filename=Formulir Pendaftaran Sertipikat Tahap 1.docx");
+            // header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            // header('Content-Transfer-Encoding: binary');
+            // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            // header('Expires: 0');
+
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($templateProcessor, 'Word2007');
+            // $xmlWriter->save("php://output");
+
+            // $templateProcessor->saveAs('php://output');
+            $pathToSave = public_path('hasil') . '/PelunasanBphtb' . $request->id . '.docx';
+            $templateProcessor->saveAs($pathToSave);
+            return response()->file($pathToSave);
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+
 }

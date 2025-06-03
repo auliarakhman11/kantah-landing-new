@@ -59,6 +59,11 @@ Route::get('mergerHakTanggungan', [FormulirController::class, 'mergerHakTanggung
 Route::post('addMergerHakTanggungan', [FormulirController::class, 'addMergerHakTanggungan'])->name('addMergerHakTanggungan');
 Route::get('viewMergerHakTanggungan', [FormulirController::class, 'viewMergerHakTanggungan'])->name('viewMergerHakTanggungan');
 Route::get('downloadMergerHakTanggungan', [FormulirController::class, 'downloadMergerHakTanggungan'])->name('downloadMergerHakTanggungan');
+
+Route::get('pelunasanBphtb', [FormulirController::class, 'pelunasanBphtb'])->name('pelunasanBphtb');
+Route::post('addPelunasanBphtb', [FormulirController::class, 'addPelunasanBphtb'])->name('addPelunasanBphtb');
+Route::get('viewPelunasanBphtb', [FormulirController::class, 'viewPelunasanBphtb'])->name('viewPelunasanBphtb');
+Route::get('downloadPelunasanBphtb', [FormulirController::class, 'downloadPelunasanBphtb'])->name('downloadPelunasanBphtb');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
