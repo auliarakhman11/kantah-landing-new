@@ -22,6 +22,7 @@ use App\Models\PendaftaranKedua;
 use App\Models\PendaftaranKetiga;
 use App\Models\PendaftaranPertama;
 use App\Models\SertipikatHilang;
+use App\Models\SertipikatRusak;
 use App\Models\TanahLainnya;
 use Illuminate\Http\Request;
 
@@ -1730,7 +1731,7 @@ class FormulirController extends Controller
         ]);
     }
 
-    public function addSertipikatHilang(Request $request)
+    public function addSertipikatRusak(Request $request)
     {
         if ($request->device_id >= 1) {
             $device_id = $request->device_id;
@@ -1782,7 +1783,7 @@ class FormulirController extends Controller
         }
 
         $kelurahan_id = explode('|', $request->kelurahan_id);
-        $berkas = SertipikatHilang::create([
+        $berkas = SertipikatRusak::create([
             'device_id' => $device_id,
             'nik' => $request->nik,
             'nama' => $request->nama,
@@ -1810,9 +1811,9 @@ class FormulirController extends Controller
         return response()->json(['id' => $berkas->id, 'device_id' => $device_id]);
     }
 
-    public function viewSertipikatHilang(Request $request)
+    public function viewSertipikatRusak(Request $request)
     {
-        $berkas = SertipikatHilang::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        $berkas = SertipikatRusak::where('id', $request->id)->where('device_id', $request->device_id)->first();
 
         if ($berkas) {
             return view('sertipikat_rusak.view', [
@@ -1826,9 +1827,9 @@ class FormulirController extends Controller
         }
     }
 
-    public function downloadSertipikatHilang(Request $request)
+    public function downloadSertipikatRusak(Request $request)
     {
-        $berkas = SertipikatHilang::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        $berkas = SertipikatRusak::where('id', $request->id)->where('device_id', $request->device_id)->first();
         if ($berkas) {
             // $url = "https://coba.kantahkabbanjar.com/formulir/FormulirPendaftaranSertipikatTahap1.docx";
             $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/sertipikatRusak.docx'));

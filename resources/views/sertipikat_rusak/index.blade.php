@@ -355,7 +355,7 @@
 
 
                 $.ajax({
-                    url: "{{ route('addSertipikatHilang') }}",
+                    url: "{{ route('addSertipikatRusak') }}",
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
@@ -375,7 +375,7 @@
 
                         localStorage.setItem("deviceId", data.device_id);
 
-                        window.location.href = "{{ route('viewSertipikatHilang') }}?id=" +
+                        window.location.href = "{{ route('viewSertipikatRusak') }}?id=" +
                             data.id + "&device_id=" + data.device_id;
 
 

@@ -46,21 +46,21 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image"><a
-                                        href="{{ route('downloadSertipikatHilang', ['id' => $id, 'device_id' => $device_id]) }}"><img
+                                        href="{{ route('downloadSertipikatRusak', ['id' => $id, 'device_id' => $device_id]) }}"><img
                                             src="{{ asset('img/msword.png') }}" alt=""></a>
                                 </figure>
                                 <figure class="overlay-image"><a
-                                        href="{{ route('downloadSertipikatHilang', ['id' => $id, 'device_id' => $device_id]) }}"><img
+                                        href="{{ route('downloadSertipikatRusak', ['id' => $id, 'device_id' => $device_id]) }}"><img
                                             src="{{ asset('img/msword.png') }}" alt=""></a>
                                 </figure>
                             </div>
                             <div class="lower-content">
                                 <h3><a
-                                        href="{{ route('downloadSertipikatHilang', ['id' => $id, 'device_id' => $device_id]) }}">Download
+                                        href="{{ route('downloadSertipikatRusak', ['id' => $id, 'device_id' => $device_id]) }}">Download
                                         Formulir</a></h3>
                                 <p>Fitur download formulir dengan format dokumen agar mudah diakses dan dimodifikasi.</p>
                                 <div class="btn-box"><a
-                                        href="{{ route('downloadSertipikatHilang', ['id' => $id, 'device_id' => $device_id]) }}"
+                                        href="{{ route('downloadSertipikatRusak', ['id' => $id, 'device_id' => $device_id]) }}"
                                         class="theme-btn btn-one">
                                         Download</a></div>
                             </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="visible-print text-center">
-                        {!! QrCode::size(300)->generate(route('downloadSertipikatHilang', ['id' => $id, 'device_id' => $device_id])) !!}
+                        {!! QrCode::size(300)->generate(route('downloadSertipikatRusak', ['id' => $id, 'device_id' => $device_id])) !!}
                         {{-- <p><strong>No Tiket: {{ $pemecahan_pemisahan->permohonan->no_tiket }}</strong></p> --}}
                     </div>
                 </div>

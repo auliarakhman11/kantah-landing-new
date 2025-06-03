@@ -76,9 +76,9 @@ Route::get('viewFormulirPeralihanHak',[FormulirController::class,'viewFormulirPe
 Route::get('downloadFormulirPeralihanHak', [FormulirController::class,'downloadFormulirPeralihanHak'])->name('downloadFormulirPeralihanHak');
 
 Route::get('sertipikatRusak', [FormulirController::class,'sertipikatRusak'])->name('sertipikatRusak');
-Route::post('addSertipikatHilang',[FormulirController::class,'addSertipikatHilang'])->name('addSertipikatHilang');
-Route::get('viewSertipikatHilang',[FormulirController::class,'viewSertipikatHilang'])->name('viewSertipikatHilang');
-Route::get('downloadSertipikatHilang', [FormulirController::class,'downloadSertipikatHilang'])->name('downloadSertipikatHilang');
+Route::post('addSertipikatRusak',[FormulirController::class,'addSertipikatRusak'])->name('addSertipikatRusak');
+Route::get('viewSertipikatRusak',[FormulirController::class,'viewSertipikatRusak'])->name('viewSertipikatRusak');
+Route::get('downloadSertipikatRusak', [FormulirController::class,'downloadSertipikatRusak'])->name('downloadSertipikatRusak');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
