@@ -22,6 +22,7 @@ use App\Models\PenataanBatas;
 use App\Models\PendaftaranKedua;
 use App\Models\PendaftaranKetiga;
 use App\Models\PendaftaranPertama;
+use App\Models\PerubahanHakPeningkatan;
 use App\Models\PisahPecahGabung;
 use App\Models\SertipikatHilang;
 use App\Models\SertipikatRusak;
@@ -2217,6 +2218,162 @@ class FormulirController extends Controller
         }
     }
 
-    
+    public function perubahanHakPeningkatan()
+    {
+        return view('perubahan_hak_peningkatan.index', [
+            'title' => 'Perubahan Hak Peningkatan',
+            'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
+            'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
+        ]);
+    }
+
+    public function addPerubahanHakPeningkatan(Request $request)
+    {
+        if ($request->device_id >= 1) {
+            $device_id = $request->device_id;
+        } else {
+            $device = Device::create(['tgl' => date('Y-m-d')]);
+            $device_id = $device->id;
+        }
+
+        $check_pemohon = Pemohon::where('nik', $request->nik)->first();
+        if ($check_pemohon) {
+            Pemohon::where('id', $check_pemohon->id)->update([
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        } else {
+            Pemohon::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'umur' => $request->umur,
+                'pekerjaan' => $request->pekerjaan,
+                'alamat' => $request->alamat,
+                'no_tlpn' => $request->no_tlpn,
+            ]);
+        }
+
+        if (strlen($request->nik_kuasa) == 16) {
+            $check_kuasa = Pemohon::where('nik', $request->nik_kuasa)->first();
+            if ($check_kuasa) {
+                Pemohon::where('id', $check_kuasa->id)->update([
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            } else {
+                Pemohon::create([
+                    'nik' => $request->nik_kuasa,
+                    'nama' => $request->nama_kuasa,
+                    'umur' => $request->umur_kuasa,
+                    'pekerjaan' => $request->pekerjaan_kuasa,
+                    'alamat' => $request->alamat_kuasa,
+                    'no_tlpn' => $request->no_tlpn_kuasa,
+                ]);
+            }
+        }
+
+        $kelurahan_id = explode('|', $request->kelurahan_id);
+        $berkas = PerubahanHakPeningkatan::create([
+            'device_id' => $device_id,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'umur' => $request->umur,
+            'tgl_lahir' => $request->tgl_lahir,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat' => $request->alamat,
+            'no_tlpn' => $request->no_tlpn,
+            'warga_negara' => $request->warga_negara,
+            'nik_kuasa' => $request->nik_kuasa,
+            'nama_kuasa' => $request->nama_kuasa,
+            'umur_kuasa' => $request->umur_kuasa,
+            'pekerjaan_kuasa' => $request->pekerjaan_kuasa,
+            'alamat_kuasa' => $request->alamat_kuasa,
+            'no_tlpn_kuasa' => $request->no_tlpn_kuasa,
+            'warga_negara_kuasa' => $request->warga_negara_kuasa,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kelurahan_id' => $kelurahan_id[0],
+            'alamat_tanah' => $request->alamat_tanah,
+            'nomor_hak' => $request->nomor_hak,
+            'tgl_hak' => $request->tgl_hak,
+            'tahun_sppt' => $request->tahun_sppt,
+            'tgl' => date('Y-m-d')
+        ]);
+
+        return response()->json(['id' => $berkas->id, 'device_id' => $device_id]);
+    }
+
+    public function viewPerubahanHakPeningkatan(Request $request)
+    {
+        $berkas = PerubahanHakPeningkatan::where('id', $request->id)->where('device_id', $request->device_id)->first();
+
+        if ($berkas) {
+            return view('perubahan_hak_peningkatan.view', [
+                'title' => 'Perubahan Hak Peningkatan',
+                'berkas' => $berkas,
+                'id' => $request->id,
+                'device_id' => $request->device_id,
+            ]);
+        } else {
+            return redirect(route('home'));
+        }
+    }
+
+    public function downloadPerubahanHakPeningkatan(Request $request)
+    {
+        $berkas = PerubahanHakPeningkatan::where('id', $request->id)->where('device_id', $request->device_id)->first();
+        if ($berkas) {
+
+            if ($berkas->nama_kuasa) {
+                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/PeningkatanHakKuasa.docx'));
+            } else {
+                $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/PeningkatanHakPrioritas.docx'));
+            }
+            
+            
+
+
+            $templateProcessor->setValues([
+                'nama' => $berkas->nama,
+                'nik' => $berkas->nik,
+                'warga_negara' => $berkas->warga_negara,
+                'tgl_lahir' => $berkas->tgl_lahir ? date("d-m-Y", strtotime($berkas->tgl_lahir)) : '',
+                'pekerjaan' => $berkas->pekerjaan,
+                'alamat' => $berkas->alamat,
+                'nama_kuasa' => $berkas->nama_kuasa,
+                'pekerjaan_kuasa' => $berkas->pekerjaan_kuasa,
+                'alamat_kuasa' => $berkas->alamat_kuasa,
+                'alamat_tanah' => $berkas->alamat_tanah,
+                'nomor_hak' => $berkas->nomor_hak,
+                'tgl_hak' => $berkas->tgl_hak ? date("d-m-Y", strtotime($berkas->tgl_hak)) : '',
+                'tahun_sppt' => $berkas->tahun_sppt,
+                'kelurahan' => $berkas->kelurahan->nm_kelurahan,
+                'kecamatan' => $berkas->kecamatan->nm_kecamatan,
+
+            ]);
+
+            // header("Content-Description: File Transfer");
+            // header("Content-Disposition: attachment; filename=Formulir Pendaftaran Sertipikat Tahap 1.docx");
+            // header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            // header('Content-Transfer-Encoding: binary');
+            // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            // header('Expires: 0');
+
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($templateProcessor, 'Word2007');
+            // $xmlWriter->save("php://output");
+
+            // $templateProcessor->saveAs('php://output');
+            $pathToSave = public_path('hasil') . '/FormulirPendaftaranSertipikatTahap1' . $request->id . '.docx';
+            $templateProcessor->saveAs($pathToSave);
+            return response()->file($pathToSave);
+        } else {
+            return redirect(route('home'));
+        }
+    }
 
 }

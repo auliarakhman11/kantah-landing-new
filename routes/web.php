@@ -89,6 +89,11 @@ Route::get('pisahPecahGabung',[FormulirController::class,'pisahPecahGabung'])->n
 Route::post('addPisahPecahGabung', [FormulirController::class,'addPisahPecahGabung'])->name('addPisahPecahGabung');
 Route::get('viewPisahPecahGabung',[FormulirController::class,'viewPisahPecahGabung'])->name('viewPisahPecahGabung');
 Route::get('downloadPisahPecahGabung',[FormulirController::class,'downloadPisahPecahGabung'])->name('downloadPisahPecahGabung');
+
+Route::get('perubahanHakPeningkatan', [FormulirController::class,'perubahanHakPeningkatan'])->name('perubahanHakPeningkatan');
+Route::post('addPerubahanHakPeningkatan',[FormulirController::class,'addPerubahanHakPeningkatan'])->name('addPerubahanHakPeningkatan');
+Route::get('viewPerubahanHakPeningkatan', [FormulirController::class,'viewPerubahanHakPeningkatan'])->name('viewPerubahanHakPeningkatan');
+Route::get('downloadPerubahanHakPeningkatan', [FormulirController::class,'downloadPerubahanHakPeningkatan'])->name('downloadPerubahanHakPeningkatan');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

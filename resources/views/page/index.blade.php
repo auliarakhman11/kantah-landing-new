@@ -375,7 +375,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="">Perubahan Hak Peningkatan</a></h5>
+                            <h5><a href="{{ route('perubahanHakPeningkatan') }}">Perubahan Hak Peningkatan</a></h5>
                         </div>
                     </div>
                 </div>
