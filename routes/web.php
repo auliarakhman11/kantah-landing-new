@@ -94,6 +94,11 @@ Route::get('perubahanHakPeningkatan', [FormulirController::class,'perubahanHakPe
 Route::post('addPerubahanHakPeningkatan',[FormulirController::class,'addPerubahanHakPeningkatan'])->name('addPerubahanHakPeningkatan');
 Route::get('viewPerubahanHakPeningkatan', [FormulirController::class,'viewPerubahanHakPeningkatan'])->name('viewPerubahanHakPeningkatan');
 Route::get('downloadPerubahanHakPeningkatan', [FormulirController::class,'downloadPerubahanHakPeningkatan'])->name('downloadPerubahanHakPeningkatan');
+
+Route::get('perubahanHakPenurunan',[FormulirController::class,'perubahanHakPenurunan'])->name('perubahanHakPenurunan');
+Route::post('addPerubahanHakPenurunan', [FormulirController::class,'addPerubahanHakPenurunan'])->name('addPerubahanHakPenurunan');
+Route::get('viewPerubahanHakPenurunan',[FormulirController::class,'viewPerubahanHakPenurunan'])->name('viewPerubahanHakPenurunan');
+Route::get('downloadPerubahanHakPenurunan', [FormulirController::class,'downloadPerubahanHakPenurunan'])->name('downloadPerubahanHakPenurunan');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
