@@ -108,6 +108,7 @@
                                     </ul>
                                 </li> --}}
                                 <li><a href="{{ route('home') }}"><u>Beranda</u></a></li>
+                                <li><a href="{{ route('dashboard') }}"><u>Dashboard</u></a></li>
                                 {{-- <li><a href="{{ route('riwayatPengisian') }}"><u>Riwayat Pengisian Blanko</u></a></li> --}}
                             </ul>
                         </div>
