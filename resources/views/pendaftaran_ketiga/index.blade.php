@@ -5,7 +5,7 @@
         <div class="auto-container">
             <div class="sec-title centred pb_70 light sec-title-animation animation-style2">
                 {{-- <span class="sub-title mb_10 title-animation">REQUEST NEEDED TALENT</span> --}}
-                <h2 class="title-animation">Pendaftaran Seripikat Tahap 3</h2>
+                <h2 class="title-animation">Pendaftaran Tanah Pertamakali III</h2>
                 <p class="title-animation">Permohonan Pendaftaran SK Hak</p>
             </div>
             <form id="form_permohonan">

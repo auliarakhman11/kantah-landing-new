@@ -284,7 +284,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="{{ route('pendaftaranPertama') }}">Pendaftaran Sertipikat Tahap 1</a></h5>
+                            <h5><a href="{{ route('pendaftaranPertama') }}">Pendaftaran Tanah Pertamakali I</a></h5>
                             <p>Permohonan Pengukuran dan Pemetaan Kadastral</p>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="{{ route('pendaftaranKedua') }}">Pendaftaran Sertipikat Tahap 2</a></h5>
+                            <h5><a href="{{ route('pendaftaranKedua') }}">Pendaftaran Tanah Pertamakali II</a></h5>
                             <p>Permohonan SK Pemberian Hak</p>
                         </div>
                     </div>
@@ -302,7 +302,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="{{ route('pendaftaranKetiga') }}">Pendaftaran Sertipikat Tahap 3</a></h5>
+                            <h5><a href="{{ route('pendaftaranKetiga') }}">Pendaftaran Tanah Pertamakali III</a></h5>
                             <p>Permohonan Pendaftaran SK Hak</p>
                         </div>
                     </div>
@@ -393,7 +393,7 @@
                     <div class="industries-block-two">
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-5"></i></div>
-                            <h5><a href="">PKKPR untuk Kegiatan Non Berusaha</a></h5>
+                            <h5><a href="{{ route('pkkpr') }}">PKKPR untuk Kegiatan Non Berusaha</a></h5>
                         </div>
                     </div>
                 </div>

@@ -5,8 +5,8 @@
         <div class="auto-container">
             <div class="sec-title centred pb_70 light sec-title-animation animation-style2">
                 {{-- <span class="sub-title mb_10 title-animation">REQUEST NEEDED TALENT</span> --}}
-                <h2 class="title-animation">Sertipikat Pengganti Karena Karena Hilang, Rusak, Terbakar, Lama</h2>
-                {{-- <p class="title-animation">Permohonan Pendaftaran SK Hak</p> --}}
+                <h2 class="title-animation">PKKPR untuk Kegiatan Non Berusaha</h2>
+                {{-- <p class="title-animation">Permohonan Pengukuran dan Pemetaan Kadastral</p> --}}
             </div>
             <form id="form_permohonan">
                 @csrf
@@ -42,10 +42,30 @@
                                     <label for="">No Telepon</label>
                                     <input type="text" name="no_tlpn" id="no_tlpn" required>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">Nomor Induk Berusaha (NIB)</label>
+                                    <small>untuk pemohon Pelaku Usaha yang sudah memiliki NIB</small>
+                                    <input type="text" name="nib">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">Nomor Anggaran dasar perusahaan / SK pengesahan</label>
+                                    <small>khusus untuk pemohon badan hukum</small>
+                                    <input type="text" name="no_sk">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">Tanggal Anggaran dasar perusahaan / SK pengesahan</label>
+                                    <small>khusus untuk pemohon badan hukum</small>
+                                    <input type="date" class="form-control" name="tgl_sk">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                     <label for="">Alamat</label>
                                     <textarea name="alamat" id="alamat" required></textarea>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -79,6 +99,16 @@
                                     <label for="">No Telepon Kuasa</label>
                                     <input type="text" name="no_tlpn_kuasa" id="no_tlpn_kuasa">
                                 </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">Nomor Surat kuasa</label>
+                                    <input type="text" name="nomor_surat_kuasa">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <label for="">Tanggal Surat kuasa</label>
+                                    <input type="text" name="tgl_surat_kuasa">
+                                </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label for="">Alamat Kuasa</label>
                                     <textarea name="alamat_kuasa" id="alamat_kuasa"></textarea>
@@ -87,15 +117,15 @@
                         </div>
                     </div>
 
-                    <div class="col-12 form-column">
+                    <div class="col-md-6 col-12 form-column">
                         <div class="form-inner">
                             <div class="title-box">
                                 {{-- <div class="icon-box"><i class="icon-39"></i></div> --}}
                                 <h3>Data Tanah</h3>
                                 {{-- <p>Kosongkan apabila tidak dikuasakan</p> --}}
                             </div>
-                            <div class="row clearfix justify-content-center">
-                                <div class="col-md-3 col-12 form-group">
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-12 form-group">
                                     <label for="">Kecamatan</label>
                                     <select class="form-control" name="kecamatan_id" id="kecamatan_id"
                                         onchange="getKelurahan(this);" required>
@@ -105,7 +135,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-3 col-12 form-group">
+                                <div class="col-md-6 col-12 form-group">
                                     <label for="">Kelurahan</label>
                                     <select class="form-control " name="kelurahan_id" id="kelurahan_id"
                                         onchange="getKecamatan(this);" required>
@@ -118,44 +148,104 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-3 col-6">
-                                    <label for="">Penggunaan Tanah</label>
-                                    <select name="penggunaan_tanah" class="form-control" required>
-                                        <option value="Non Pertanian">Non Pertanian</option>
-                                        <option value="Pertanian">Pertanian</option>
-                                    </select>
+                                <div class="col-md-6 col-6 form-group">
+                                    <label for="">Rencana Kegiatan/Penggunaan dan Pemanfaatan Tanah</label>
+                                    <input type="text" name="rencana_tanah" required>
                                 </div>
 
-                                <div class="col-md-3 col-6">
-                                    <label for="">Jenis Hak</label>
-                                    <select name="jenis_hak" class="form-control" required>
-                                        <option value="Milik">Hak Milik</option>
-                                        <option value="Guna Bangunan">Hak Guna Bangunan</option>
-                                        <option value="Pakai">Hak Pakai</option>
-                                        <option value="Guna Usaha">Hak Guna Usaha</option>
-                                    </select>
+                                <div class="col-md-6 col-6 form-group">
+                                    <label for="">Penggunaan Tanah Saat Ini</label>
+                                    <input type="text" name="penggunaan_tanah" required>
                                 </div>
 
-                                <div class="col-md-3 col-6 form-group">
+                                <div class="col-md-6 col-6 form-group">
                                     <label for="">Nomor Hak</label>
-                                    <input type="text" name="nomor_hak" required>
+                                    <input type="number" name="nomor_hak" class="form-control" required="">
                                 </div>
 
-                                <div class="col-md-3 col-6 form-group">
-                                    <label for="">RW</label>
-                                    <input type="text" name="rw" required>
-                                </div>
-                                <div class="col-md-3 col-6 form-group">
-                                    <label for="">RT</label>
-                                    <input type="text" name="rt" required>
+                                <div class="col-md-6 col-6 form-group">
+                                    <label for="">Kode dan nama KBLI</label>
+                                    <small>Klasifikasi Baku Lapangan usaha Indonesia (untuk pemohon pelaku usaha) </small>
+                                    <input type="text" name="kbli">
                                 </div>
 
+                                <div class="col-md-6 col-6 form-group">
+                                    <label for="">Status/penguasaan tanah </label>
+                                    <input type="text" name="status_tanah" required>
+                                </div>
 
+                                <div class="col-md-6 col-6 form-group">
+                                    <label for="">Luas Tanah</label>
+                                    <input type="text" name="luas_tanah" required>
+                                </div>
 
-                                <div class="col-lg-3 col-md-4 col-sm-12 form-group">
+                                <div class="col-lg-6 col-md-12 col-sm-12 form-group">
                                     <label for="">Alamat Tanah</label>
-                                    <textarea name="alamat_tanah" required></textarea>
+                                    <textarea name="alamat_tanah" id="alamat_tanah"></textarea>
                                 </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-12 form-column">
+                        <div class="form-inner">
+                            <div class="title-box">
+                                {{-- <div class="icon-box"><i class="icon-39"></i></div> --}}
+                                <h3>Untuk melengkapi permohonan dimaksud, Bersama ini kami lampirkan</h3>
+                                {{-- <p>Kosongkan apabila tidak dikuasakan</p> --}}
+                            </div>
+                            <div class="row">
+
+                                <div class="mt-2 col-1">1</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">2</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">3</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">4</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">5</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">6</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+                                <div class="mt-2 col-1">7</div>
+                                <div class="mt-2 col-11">
+                                    <input type="text" name="lampiran[]" class="form-control">
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 form-column">
+                        <div class="form-inner">
+                            <div class="title-box">
+                                {{-- <div class="icon-box"><i class="icon-39"></i></div> --}}
+                                {{-- <h3>Data Tanah</h3> --}}
+                                {{-- <p>Kosongkan apabila tidak dikuasakan</p> --}}
+                            </div>
+                            <div class="row clearfix justify-content-center">
 
                                 <div class="col-lg-5 col-md-12 col-sm-12 right-column">
 
@@ -165,113 +255,14 @@
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
 
 
 
-                    {{-- <div class="col-lg-6 col-md-12 col-sm-12 form-column">
-                        <div class="form-inner">
-                            <div class="title-box">
-                                <div class="icon-box"><i class="icon-40"></i></div>
-                                <h3>Company Details</h3>
-                                <p>Please fill out your contact person details here.</p>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="company_name" placeholder="Company Name" required>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="web_url" placeholder="Website" required>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <div class="select-box">
-                                        <select class="wide">
-                                            <option data-display="Industry">Industry</option>
-                                            <option value="1">Executive</option>
-                                            <option value="2">Training</option>
-                                            <option value="3">Career</option>
-                                            <option value="4">Payroll</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="phone" placeholder="Phone" required>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="address" placeholder="Address" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 form-column">
-                        <div class="form-inner">
-                            <div class="row clearfix">
-                                <div class="col-lg-7 col-md-12 col-sm-12 left-column">
-                                    <div class="title-box">
-                                        <div class="icon-box"><i class="icon-41"></i></div>
-                                        <h3>Request Talent</h3>
-                                        <p>Here you can leave your job details & Submit your job post.</p>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <div class="select-box">
-                                                <select class="wide">
-                                                    <option data-display="Specialisation">Specialisation</option>
-                                                    <option value="1">Information technology</option>
-                                                    <option value="2">Marketing</option>
-                                                    <option value="3">Finance</option>
-                                                    <option value="4">International trade</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <div class="select-box">
-                                                <select class="wide">
-                                                    <option data-display="Preferred Pronoun">Preferred Pronoun</option>
-                                                    <option value="1">Information technology</option>
-                                                    <option value="2">Marketing</option>
-                                                    <option value="3">Finance</option>
-                                                    <option value="4">International trade</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="post" placeholder="Position hiring for" required>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <div class="select-box">
-                                                <select class="wide">
-                                                    <option data-display="Number of Opening">Number of Opening</option>
-                                                    <option value="1">01</option>
-                                                    <option value="2">02</option>
-                                                    <option value="3">03</option>
-                                                    <option value="4">04</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="location" placeholder="Job Location" required>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="rate" placeholder="Pay Rate Range" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-md-12 col-sm-12 right-column">
-                                    <div class="right-content">
-                                        <div class="form-group">
-                                            <textarea name="message" placeholder="Job Description"></textarea>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Submit Your Request</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+
 
                 </div>
             </form>
@@ -355,7 +346,7 @@
 
 
                 $.ajax({
-                    url: "{{ route('addSertipikatRusak') }}",
+                    url: "{{ route('addGantiNamaSertipikat') }}",
                     method: 'POST',
                     data: new FormData(this),
                     contentType: false,
@@ -375,7 +366,7 @@
 
                         localStorage.setItem("deviceId", data.device_id);
 
-                        window.location.href = "{{ route('viewSertipikatRusak') }}?id=" +
+                        window.location.href = "{{ route('viewGantiNamaSertipikat') }}?id=" +
                             data.id + "&device_id=" + data.device_id;
 
 

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //dashboard
-Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 //end dashboard
 
 //formulir
@@ -75,35 +75,38 @@ Route::post('addFormulirRoya', [FormulirController::class, 'addFormulirRoya'])->
 Route::get('viewFormulirRoya', [FormulirController::class, 'viewFormulirRoya'])->name('viewFormulirRoya');
 Route::get('downloadFormulirRoya', [FormulirController::class, 'downloadFormulirRoya'])->name('downloadFormulirRoya');
 
-Route::get('formulirPeralihanHak', [FormulirController::class,'formulirPeralihanHak'])->name('formulirPeralihanHak');
-Route::post('addFormulirPeralihanHak',[FormulirController::class,'addFormulirPeralihanHak'])->name('addFormulirPeralihanHak');
-Route::get('viewFormulirPeralihanHak',[FormulirController::class,'viewFormulirPeralihanHak'])->name('viewFormulirPeralihanHak');
-Route::get('downloadFormulirPeralihanHak', [FormulirController::class,'downloadFormulirPeralihanHak'])->name('downloadFormulirPeralihanHak');
+Route::get('formulirPeralihanHak', [FormulirController::class, 'formulirPeralihanHak'])->name('formulirPeralihanHak');
+Route::post('addFormulirPeralihanHak', [FormulirController::class, 'addFormulirPeralihanHak'])->name('addFormulirPeralihanHak');
+Route::get('viewFormulirPeralihanHak', [FormulirController::class, 'viewFormulirPeralihanHak'])->name('viewFormulirPeralihanHak');
+Route::get('downloadFormulirPeralihanHak', [FormulirController::class, 'downloadFormulirPeralihanHak'])->name('downloadFormulirPeralihanHak');
 
-Route::get('sertipikatRusak', [FormulirController::class,'sertipikatRusak'])->name('sertipikatRusak');
-Route::post('addSertipikatRusak',[FormulirController::class,'addSertipikatRusak'])->name('addSertipikatRusak');
-Route::get('viewSertipikatRusak',[FormulirController::class,'viewSertipikatRusak'])->name('viewSertipikatRusak');
-Route::get('downloadSertipikatRusak', [FormulirController::class,'downloadSertipikatRusak'])->name('downloadSertipikatRusak');
+Route::get('sertipikatRusak', [FormulirController::class, 'sertipikatRusak'])->name('sertipikatRusak');
+Route::post('addSertipikatRusak', [FormulirController::class, 'addSertipikatRusak'])->name('addSertipikatRusak');
+Route::get('viewSertipikatRusak', [FormulirController::class, 'viewSertipikatRusak'])->name('viewSertipikatRusak');
+Route::get('downloadSertipikatRusak', [FormulirController::class, 'downloadSertipikatRusak'])->name('downloadSertipikatRusak');
 
-Route::get('penataanBatas',[FormulirController::class,'penataanBatas'])->name('penataanBatas');
-Route::post('addPenataanBatas', [FormulirController::class,'addPenataanBatas'])->name('addPenataanBatas');
-Route::get('viewPenataanBatas', [FormulirController::class,'viewPenataanBatas'])->name('viewPenataanBatas');
-Route::get('downloadPenataanBatas', [FormulirController::class,'downloadPenataanBatas'])->name('downloadPenataanBatas');
+Route::get('penataanBatas', [FormulirController::class, 'penataanBatas'])->name('penataanBatas');
+Route::post('addPenataanBatas', [FormulirController::class, 'addPenataanBatas'])->name('addPenataanBatas');
+Route::get('viewPenataanBatas', [FormulirController::class, 'viewPenataanBatas'])->name('viewPenataanBatas');
+Route::get('downloadPenataanBatas', [FormulirController::class, 'downloadPenataanBatas'])->name('downloadPenataanBatas');
 
-Route::get('pisahPecahGabung',[FormulirController::class,'pisahPecahGabung'])->name('pisahPecahGabung');
-Route::post('addPisahPecahGabung', [FormulirController::class,'addPisahPecahGabung'])->name('addPisahPecahGabung');
-Route::get('viewPisahPecahGabung',[FormulirController::class,'viewPisahPecahGabung'])->name('viewPisahPecahGabung');
-Route::get('downloadPisahPecahGabung',[FormulirController::class,'downloadPisahPecahGabung'])->name('downloadPisahPecahGabung');
+Route::get('pisahPecahGabung', [FormulirController::class, 'pisahPecahGabung'])->name('pisahPecahGabung');
+Route::post('addPisahPecahGabung', [FormulirController::class, 'addPisahPecahGabung'])->name('addPisahPecahGabung');
+Route::get('viewPisahPecahGabung', [FormulirController::class, 'viewPisahPecahGabung'])->name('viewPisahPecahGabung');
+Route::get('downloadPisahPecahGabung', [FormulirController::class, 'downloadPisahPecahGabung'])->name('downloadPisahPecahGabung');
 
-Route::get('perubahanHakPeningkatan', [FormulirController::class,'perubahanHakPeningkatan'])->name('perubahanHakPeningkatan');
-Route::post('addPerubahanHakPeningkatan',[FormulirController::class,'addPerubahanHakPeningkatan'])->name('addPerubahanHakPeningkatan');
-Route::get('viewPerubahanHakPeningkatan', [FormulirController::class,'viewPerubahanHakPeningkatan'])->name('viewPerubahanHakPeningkatan');
-Route::get('downloadPerubahanHakPeningkatan', [FormulirController::class,'downloadPerubahanHakPeningkatan'])->name('downloadPerubahanHakPeningkatan');
+Route::get('perubahanHakPeningkatan', [FormulirController::class, 'perubahanHakPeningkatan'])->name('perubahanHakPeningkatan');
+Route::post('addPerubahanHakPeningkatan', [FormulirController::class, 'addPerubahanHakPeningkatan'])->name('addPerubahanHakPeningkatan');
+Route::get('viewPerubahanHakPeningkatan', [FormulirController::class, 'viewPerubahanHakPeningkatan'])->name('viewPerubahanHakPeningkatan');
+Route::get('downloadPerubahanHakPeningkatan', [FormulirController::class, 'downloadPerubahanHakPeningkatan'])->name('downloadPerubahanHakPeningkatan');
 
-Route::get('perubahanHakPenurunan',[FormulirController::class,'perubahanHakPenurunan'])->name('perubahanHakPenurunan');
-Route::post('addPerubahanHakPenurunan', [FormulirController::class,'addPerubahanHakPenurunan'])->name('addPerubahanHakPenurunan');
-Route::get('viewPerubahanHakPenurunan',[FormulirController::class,'viewPerubahanHakPenurunan'])->name('viewPerubahanHakPenurunan');
-Route::get('downloadPerubahanHakPenurunan', [FormulirController::class,'downloadPerubahanHakPenurunan'])->name('downloadPerubahanHakPenurunan');
+Route::get('perubahanHakPenurunan', [FormulirController::class, 'perubahanHakPenurunan'])->name('perubahanHakPenurunan');
+Route::post('addPerubahanHakPenurunan', [FormulirController::class, 'addPerubahanHakPenurunan'])->name('addPerubahanHakPenurunan');
+Route::get('viewPerubahanHakPenurunan', [FormulirController::class, 'viewPerubahanHakPenurunan'])->name('viewPerubahanHakPenurunan');
+Route::get('downloadPerubahanHakPenurunan', [FormulirController::class, 'downloadPerubahanHakPenurunan'])->name('downloadPerubahanHakPenurunan');
+
+
+Route::get('pkkpr', [FormulirController::class, 'pkkpr'])->name('pkkpr');
 //endformulir
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

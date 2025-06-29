@@ -2336,8 +2336,8 @@ class FormulirController extends Controller
             } else {
                 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/PeningkatanHakPrioritas.docx'));
             }
-            
-            
+
+
 
 
             $templateProcessor->setValues([
@@ -2511,8 +2511,8 @@ class FormulirController extends Controller
             } else {
                 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('formulir/PenurunanHakPrioritas.docx'));
             }
-            
-            
+
+
             $lampiran = LampiranPerubahanHakPenurunan::where('permohonan_id', $request->id)->get();
 
             foreach ($lampiran as $key => $l) {
@@ -2576,4 +2576,12 @@ class FormulirController extends Controller
         }
     }
 
+    public function pkkpr()
+    {
+        return view('pkkpr.index', [
+            'title' => 'Perubahan Hak Penurunan',
+            'kecamatan' => Kecamatan::orderBy('nm_kecamatan', 'ASC')->get(),
+            'kelurahan' => Kelurahan::orderBy('kecamatan_id', 'ASC')->get(),
+        ]);
+    }
 }
